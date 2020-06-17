@@ -53,6 +53,7 @@
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                         -Xmx256m
                     </argLine>
+                    <useSystemClassLoader>false</useSystemClassLoader>
                     <reportsDirectory>target/TestReport</reportsDirectory>
                 </configuration>
             </plugin>
