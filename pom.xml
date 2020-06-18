@@ -26,8 +26,6 @@
 
         <!-- Directory Properties -->
         <resource-test.directory>${project.basedir}/src/test/resources</resource-test.directory>
-        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-        <allure.report.directory>${project.build.directory}/site/allure-report</allure.report.directory>
     </properties>
 
     <build>
