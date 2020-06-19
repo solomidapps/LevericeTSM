@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import components.EmailComponent;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ public class MailHogUtil {
 
     @Step("Opening MailHog in a new tab")
     public static void openTab() {
+        open();
         Selenide.executeJavaScript("window.open();");
         switchTo().window(1);
         open(MAILHOG_URL);
@@ -40,12 +42,17 @@ public class MailHogUtil {
         List<SelenideElement> emailList = $$(EMAIL_LIST_CSS);
         List<SelenideElement> emailNamesList = $$(EmailComponent.getEmailToClassname());
         List<SelenideElement> subjectNameList = $$(EmailComponent.getSubjectClassname());
-        for (int i = 0; i < emailList.size(); i++) {
-            emailComponentMap.put(i,
-                    new EmailComponent(
-                            emailNamesList.get(i),
-                            subjectNameList.get(i)));
+        if (emailList.isEmpty()) {
+            Assert.fail("Email list is empty");
+        } else {
+            for (int i = 0; i < emailList.size(); i++) {
+                emailComponentMap.put(i,
+                        new EmailComponent(
+                                emailNamesList.get(i),
+                                subjectNameList.get(i)));
+            }
         }
+
     }
 
     @Step("Opening first matching to '{emailName}' email with subject '{subject}' in the list")
@@ -53,6 +60,8 @@ public class MailHogUtil {
         for (int i = 0; i < emailComponentMap.size(); i++) {
             if (emailComponentMap.get(i).getEmailToName().equals(emailName) & emailComponentMap.get(i).getSubjectName().equals(subject)) {
                 emailComponentMap.get(i).clickOnEmail();
+            } else if (i == emailComponentMap.size() - 1) {
+                Assert.fail("No such email in the list: " + emailName);
             }
         }
     }
