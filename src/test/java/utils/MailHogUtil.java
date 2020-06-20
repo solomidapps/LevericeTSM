@@ -25,7 +25,6 @@ public class MailHogUtil {
 
     @Step("Opening MailHog in a new tab")
     public static void openTab() {
-        open();
         Selenide.executeJavaScript("window.open();");
         switchTo().window(1);
         open(MAILHOG_URL);
@@ -58,7 +57,7 @@ public class MailHogUtil {
     @Step("Opening first matching to '{emailName}' email with subject '{subject}' in the list")
     public static void openEmailByNameAndASubject(String emailName, String subject) {
         for (int i = 0; i < emailComponentMap.size(); i++) {
-            if (emailComponentMap.get(i).getEmailToName().equals(emailName) & emailComponentMap.get(i).getSubjectName().equals(subject)) {
+            if (emailComponentMap.get(i).getEmailToName().equals(emailName) && emailComponentMap.get(i).getSubjectName().equals(subject)) {
                 emailComponentMap.get(i).clickOnEmail();
             } else if (i == emailComponentMap.size() - 1) {
                 Assert.fail("No such email in the list: " + emailName);
