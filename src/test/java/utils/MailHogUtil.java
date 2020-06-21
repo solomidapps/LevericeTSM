@@ -23,7 +23,6 @@ public class MailHogUtil {
     private static final String VALIDATION_CODE_CSS = ".validation-code";
     private static Map<Integer, EmailComponent> emailComponentMap = new LinkedHashMap<>();
 
-    @Step("Opening MailHog in a new tab")
     public static void openTab() {
         Selenide.executeJavaScript("window.open();");
         switchTo().window(1);
@@ -36,13 +35,11 @@ public class MailHogUtil {
         AllureUtils.takeScreenshot();
     }
 
-    @Step("Closing MailHog tab")
     public static void closeTab() {
         Selenide.executeJavaScript("window.close");
         switchTo().window(0);
     }
 
-    @Step("Getting all emails in a list")
     public static void getAllEmails() {
         List<SelenideElement> emailList = $$(EMAIL_LIST_CSS);
         List<SelenideElement> emailNamesList = $$(EmailComponent.getEmailToClassname());
@@ -60,7 +57,6 @@ public class MailHogUtil {
 
     }
 
-    @Step("Opening first matching to '{emailName}' email with subject '{subject}' in the list")
     public static void openEmailByNameAndASubject(String emailName, String subject) {
         for (int i = 0; i < emailComponentMap.size(); i++) {
             if (emailComponentMap.get(i).getEmailToName().equals(emailName) && emailComponentMap.get(i).getSubjectName().equals(subject)) {
@@ -71,14 +67,12 @@ public class MailHogUtil {
         }
     }
 
-    @Step("Getting verification code from '{emailName}'")
     public static String getValidationCode() {
         switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID)));
         AllureUtils.takeScreenshot();
         return $(VALIDATION_CODE_CSS).getText().trim();
     }
 
-    @Step("Getting verification code from '{emailName}'")
     public static String getValidationCodeByEmail(String emailName) {
         openTab();
         getAllEmails();
