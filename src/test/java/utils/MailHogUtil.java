@@ -61,6 +61,7 @@ public class MailHogUtil {
         for (int i = 0; i < emailComponentMap.size(); i++) {
             if (emailComponentMap.get(i).getEmailToName().equals(emailName) && emailComponentMap.get(i).getSubjectName().equals(subject)) {
                 emailComponentMap.get(i).clickOnEmail();
+                break;
             } else if (i == emailComponentMap.size() - 1) {
                 Assert.fail("No such email in the list: " + emailName);
             }
