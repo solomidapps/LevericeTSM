@@ -1,4 +1,4 @@
-package pages.base;
+package pages.addFolderPage;
 
 import com.codeborne.selenide.Condition;
 import lombok.extern.log4j.Log4j2;
@@ -6,6 +6,7 @@ import models.Folder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
+import pages.base.BasePage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
