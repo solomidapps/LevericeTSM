@@ -31,7 +31,6 @@ public class MailHogUtil {
 
     public static void isTabOpened() {
         $(TOOLBAR_CSS).waitUntil(Condition.visible, 3000);
-        AllureUtils.takeScreenshot();
     }
 
     public static void closeTab() {

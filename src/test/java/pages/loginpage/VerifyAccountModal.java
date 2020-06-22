@@ -59,7 +59,6 @@ public class VerifyAccountModal extends BaseMenuModal {
     public VerifyAccountModal enterCodeInFirstField(String verificationCode) {
         log.info("Inputting verification code");
         try {
-            screenshot("trsssss.png");
             element.get(0).sendKeys(verificationCode);
         } catch (ElementNotInteractableException e) {
             log.error("Could not enter verification code");
