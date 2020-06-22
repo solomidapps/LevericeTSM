@@ -22,11 +22,11 @@ public class EmailComponent {
     }
 
     public String getEmailToName() {
-        return emailTo.getText();
+        return emailTo.getText().trim();
     }
 
     public String getSubjectName() {
-        return subject.getText();
+        return subject.getText().trim();
     }
 
     public void clickOnEmail() {

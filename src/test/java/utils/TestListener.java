@@ -1,4 +1,4 @@
-package tests.utils;
+package utils;
 
 import io.qameta.allure.Attachment;
 import lombok.extern.log4j.Log4j2;
@@ -47,16 +47,6 @@ public class TestListener implements ITestListener {
     public void onFinish(ITestContext context) {
         log.info("======================================== TESTS FINISHED ========================================");
 
-    }
-    @Attachment(value = "Last screen state", type = "image/png")
-    private byte[] takeScreenshot(ITestResult iTestResult) {
-        try {
-            return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
-        } catch (NoSuchSessionException ex) {
-            return null;
-        } catch (IllegalStateException ex) {
-            return null;
-        }
     }
 
     private long getExecutionTime(ITestResult iTestResult) {

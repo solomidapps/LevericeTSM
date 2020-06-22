@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import components.EmailComponent;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -61,6 +60,7 @@ public class MailHogUtil {
         for (int i = 0; i < emailComponentMap.size(); i++) {
             if (emailComponentMap.get(i).getEmailToName().equals(emailName) && emailComponentMap.get(i).getSubjectName().equals(subject)) {
                 emailComponentMap.get(i).clickOnEmail();
+                break;
             } else if (i == emailComponentMap.size() - 1) {
                 Assert.fail("No such email in the list: " + emailName);
             }
