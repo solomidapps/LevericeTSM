@@ -69,7 +69,6 @@ public class MailHogUtil {
 
     public static String getValidationCode() {
         switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID)));
-        AllureUtils.takeScreenshot();
         return $(VALIDATION_CODE_CSS).getText().trim();
     }
 
