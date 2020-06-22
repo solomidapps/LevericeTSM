@@ -46,12 +46,10 @@ public class VerifyAccountModal extends BaseMenuModal {
     public VerifyAccountModal getVerificationFields() {
         log.info("Getting verification fields");
         try {
-            screenshot("test.png");
             element = $$(By.xpath(INPUT_ELEMENTS_XPATH));
         } catch (Exception e) {
             log.error("Couldn't find elements");
             Assert.fail("No such elements");
-            AllureUtils.takeScreenshot();
         }
 
         return this;
@@ -61,11 +59,11 @@ public class VerifyAccountModal extends BaseMenuModal {
     public VerifyAccountModal enterCodeInFirstField(String verificationCode) {
         log.info("Inputting verification code");
         try {
+            screenshot("trsssss.png");
             element.get(0).sendKeys(verificationCode);
         } catch (ElementNotInteractableException e) {
             log.error("Could not enter verification code");
             Assert.fail("Could not enter verification code");
-            AllureUtils.takeScreenshot();
         }
         return this;
     }
