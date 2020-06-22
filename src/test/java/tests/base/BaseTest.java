@@ -35,9 +35,10 @@ public class BaseTest {
                 "TMS-Pre-Name",
                 "TMS-Pre-Surname",
                 "TMS-Pre-Workspace");
+        getWebDriver().quit();
     }
 
-    @BeforeClass
+    @BeforeMethod
     public void setupBrowser() {
         Configuration.headless = false;
         Configuration.startMaximized = true;
