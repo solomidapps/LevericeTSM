@@ -1,4 +1,4 @@
-package pages.loginpage;
+package pages.mainMenuPage;
 
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
@@ -46,7 +46,7 @@ public class IntroduceModal extends BaseMenuModal {
 
     @Step("Clicking on continue button")
     public CreateWorkspaceModal clickOnContinueButton(){
-        log.info("Clicking continue button and waiting create workspace modal");
+        log.debug("Clicking continue button and waiting create workspace modal");
         $(CONTINUE_BUTTON_CSS).click();
         CreateWorkspaceModal createWorkspaceModal = new CreateWorkspaceModal();
         createWorkspaceModal.isModalOpened();

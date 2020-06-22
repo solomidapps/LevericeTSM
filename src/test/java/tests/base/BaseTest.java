@@ -1,10 +1,11 @@
 package tests.base;
 
 import com.codeborne.selenide.Configuration;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import pages.loginpage.*;
+import org.testng.annotations.*;
+import pages.addFolderPage.MenuStructurePage;
+import pages.inviteUsersPage.InviteUserModal;
+import pages.mainMenuPage.*;
+import steps.InviteUserSteps;
 import steps.MainMenuSteps;
 import utils.TestListener;
 
@@ -20,8 +21,23 @@ public class BaseTest {
     protected IntroduceModal introduceModal;
     protected CreateWorkspaceModal createWorkspaceModal;
     protected MainMenuSteps mainMenuSteps;
+    protected InviteUserModal inviteUserModal;
+    protected MenuStructurePage menuStructurePage;
+    protected InviteUserSteps inviteUserSteps;
 
-    @BeforeMethod
+    private static final String randomNumber = String.valueOf(Math.random() * ((999 - 1) + 1)) + 1;
+
+    @BeforeSuite
+    public void setupEnvironment() {
+        MainMenuSteps mainMenuSteps = new MainMenuSteps();
+        mainMenuSteps.createNewWorkspace(
+                "wonder-pre" + randomNumber + "@day.com",
+                "TMS-Pre-Name",
+                "TMS-Pre-Surname",
+                "TMS-Pre-Workspace");
+    }
+
+    @BeforeClass
     public void setupBrowser() {
         Configuration.headless = false;
         Configuration.startMaximized = true;
@@ -35,6 +51,10 @@ public class BaseTest {
         introduceModal = new IntroduceModal();
         createWorkspaceModal = new CreateWorkspaceModal();
         mainMenuSteps = new MainMenuSteps();
+        introduceModal = new IntroduceModal();
+        menuStructurePage = new MenuStructurePage();
+        inviteUserModal = new InviteUserModal();
+        inviteUserSteps = new InviteUserSteps();
     }
 
     @AfterMethod(alwaysRun = true)

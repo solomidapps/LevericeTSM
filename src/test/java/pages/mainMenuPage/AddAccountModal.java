@@ -1,4 +1,4 @@
-package pages.loginpage;
+package pages.mainMenuPage;
 
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
@@ -61,7 +61,7 @@ public class AddAccountModal extends BaseMenuModal {
 
     @Step("Clicking on continue button")
     public VerifyAccountModal clickOnContinueButton() {
-        log.info("Clicking on continue button");
+        log.debug("Clicking on continue button");
         assertTrue(isContinueButtonEnabled());
         $(CONTINUE_BUTTON_CSS).click();
         VerifyAccountModal verifyAccountModal = new VerifyAccountModal();

@@ -7,8 +7,6 @@ import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
-
-
 @Log4j2
 public class TestListener implements ITestListener {
 
@@ -41,7 +39,6 @@ public class TestListener implements ITestListener {
 
     public void onFinish(ITestContext context) {
         log.info("======================================== TESTS FINISHED ========================================");
-
     }
 
     private long getExecutionTime(ITestResult iTestResult) {

@@ -1,4 +1,4 @@
-package pages.loginpage;
+package pages.mainMenuPage;
 
 import io.qameta.allure.Step;
 import pages.base.BaseMenuModal;
