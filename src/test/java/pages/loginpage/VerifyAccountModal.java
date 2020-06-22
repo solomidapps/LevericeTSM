@@ -13,8 +13,7 @@ import utils.MailHogUtil;
 
 import java.util.NoSuchElementException;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
 public class VerifyAccountModal extends BaseMenuModal {
@@ -30,7 +29,6 @@ public class VerifyAccountModal extends BaseMenuModal {
         log.info("Checking is Verification modal opened");
         try {
             $(BACK_BUTTON_CSS).waitUntil(Condition.visible, 3000);
-
         } catch (NoSuchElementException e) {
             log.error("Verification modal is not opened");
             AllureUtils.takeScreenshot();
@@ -52,7 +50,6 @@ public class VerifyAccountModal extends BaseMenuModal {
         } catch (Exception e) {
             log.error("Couldn't find elements");
             Assert.fail("No such elements");
-            AllureUtils.takeScreenshot();
         }
 
         return this;
@@ -66,7 +63,6 @@ public class VerifyAccountModal extends BaseMenuModal {
         } catch (ElementNotInteractableException e) {
             log.error("Could not enter verification code");
             Assert.fail("Could not enter verification code");
-            AllureUtils.takeScreenshot();
         }
         return this;
     }
