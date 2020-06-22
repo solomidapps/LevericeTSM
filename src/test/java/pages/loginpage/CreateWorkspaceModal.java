@@ -1,8 +1,10 @@
 package pages.loginpage;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import pages.base.BaseMenuModal;
+import pages.base.MenuStructurePage;
 import utils.AllureUtils;
 
 import java.util.NoSuchElementException;
@@ -16,6 +18,7 @@ public class CreateWorkspaceModal extends BaseMenuModal {
     private static final String INPUT_WORKSPACE_NAME_CSS = ".textarea__inner ";
     private static final String CONTINUE_BUTTON_CSS = ".button-accept";
 
+    @Step("Verifying is CreateWorkspaceModal open")
     @Override
     public BaseMenuModal isModalOpened() {
         log.info("Checking create workspace modal opened");
@@ -29,11 +32,17 @@ public class CreateWorkspaceModal extends BaseMenuModal {
         return this;
     }
 
-    public void enterWorkspaceName(String workspaceName) {
+    @Step("Entering workspace name '{workspaceName}'")
+    public CreateWorkspaceModal enterWorkspaceName(String workspaceName) {
+        log.info("Enetring workspace name " + workspaceName);
         $(INPUT_WORKSPACE_NAME_CSS).sendKeys(workspaceName);
+        return this;
     }
 
-    public void clickOnContinueButton(){
+    @Step("Clicking on continue button")
+    public MenuStructurePage clickOnContinueButton(){
+        log.info("Clicking on continue button");
         $(CONTINUE_BUTTON_CSS).click();
+        return new MenuStructurePage();
     }
 }

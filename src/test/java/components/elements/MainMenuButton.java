@@ -1,5 +1,6 @@
 package components.elements;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import utils.AllureUtils;
@@ -16,7 +17,7 @@ public class MainMenuButton {
         log.info("Clicking on menu button with text " + buttonText);
         try {
             $(By.xpath(String.format(MENU_BUTTON_XPATH, buttonText))).click();
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             log.error("No such element to click");
             AllureUtils.takeScreenshot();
         }

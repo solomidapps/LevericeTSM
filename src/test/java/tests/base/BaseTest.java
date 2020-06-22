@@ -5,7 +5,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.loginpage.*;
-import tests.utils.TestListener;
+import steps.MainMenuSteps;
+import utils.TestListener;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
@@ -18,6 +19,7 @@ public class BaseTest {
     protected VerifyAccountModal verifyAccountModal;
     protected IntroduceModal introduceModal;
     protected CreateWorkspaceModal createWorkspaceModal;
+    protected MainMenuSteps mainMenuSteps;
 
     @BeforeMethod
     public void setupBrowser() {
@@ -32,6 +34,7 @@ public class BaseTest {
         verifyAccountModal = new VerifyAccountModal();
         introduceModal = new IntroduceModal();
         createWorkspaceModal = new CreateWorkspaceModal();
+        mainMenuSteps = new MainMenuSteps();
     }
 
     @AfterMethod(alwaysRun = true)

@@ -1,6 +1,7 @@
 package pages.loginpage;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import pages.base.BaseMenuModal;
 import utils.AllureUtils;
@@ -17,6 +18,7 @@ public class AddAccountModal extends BaseMenuModal {
     private static final String CONTINUE_BUTTON_CSS = ".button-accept";
     private static final String INPUT_AREA_CSS = ".textarea__inner";
 
+    @Step("Verifying is BaseMenuModal open")
     @Override
     public BaseMenuModal isModalOpened() {
         log.info("Checking is Add account modal opened");
@@ -30,28 +32,34 @@ public class AddAccountModal extends BaseMenuModal {
         return this;
     }
 
+    @Step("Clicking on back button")
     public MainMenuModal clickOnBackButton() {
         $(BACK_BUTTON_CSS).click();
         return new MainMenuModal();
     }
 
+    @Step("Entering email '{email}'")
     public AddAccountModal enterEmail(String email) {
         log.info("Filling in field with text: " + email);
         assertTrue(isContinueButtonDisabled());
         $(INPUT_AREA_CSS).clear();
         $(INPUT_AREA_CSS).sendKeys(email);
-
         return this;
     }
 
+    @Step("Verifying is Continue button disabled")
     public boolean isContinueButtonDisabled() {
+        log.info("Verifying is continue button disabled");
         return $(CONTINUE_BUTTON_CSS).getAttribute("class").contains("disabled");
     }
 
+    @Step("Verifying is Continue button active")
     public boolean isContinueButtonEnabled() {
+        log.info("Verifying is continue button enabled");
         return $(CONTINUE_BUTTON_CSS).getAttribute("class").contains("active");
     }
 
+    @Step("Clicking on continue button")
     public VerifyAccountModal clickOnContinueButton() {
         log.info("Clicking on continue button");
         assertTrue(isContinueButtonEnabled());

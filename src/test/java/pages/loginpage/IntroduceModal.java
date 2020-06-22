@@ -1,6 +1,7 @@
 package pages.loginpage;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import pages.base.BaseMenuModal;
 import utils.AllureUtils;
@@ -17,6 +18,7 @@ public class IntroduceModal extends BaseMenuModal {
     private static final String SECOND_NAME_INPUT__CSS = "[name='lname']";
     private static final String CONTINUE_BUTTON_CSS = ".button-accept";
 
+    @Step("Verifying is IntroduceModal open")
     @Override
     public BaseMenuModal isModalOpened() {
         log.info("Checking Intro modal opened");
@@ -30,18 +32,27 @@ public class IntroduceModal extends BaseMenuModal {
         return this;
     }
 
+    @Step("Inputting first name '{name}'")
     public IntroduceModal inputFirstName(String name) {
         $(FIRST_NAME_INPUT__CSS).sendKeys(name);
         return this;
     }
 
+    @Step("Inputting last name '{name}'")
     public IntroduceModal inputLastName(String name) {
         $(SECOND_NAME_INPUT__CSS).sendKeys(name);
         return this;
     }
 
-    public void clickOnContinueButton(){
+    @Step("Clicking on continue button")
+    public CreateWorkspaceModal clickOnContinueButton(){
+        log.info("Clicking continue button and waiting create workspace modal");
         $(CONTINUE_BUTTON_CSS).click();
+        CreateWorkspaceModal createWorkspaceModal = new CreateWorkspaceModal();
+        createWorkspaceModal.isModalOpened();
+        return createWorkspaceModal;
     }
+
+
 
 }

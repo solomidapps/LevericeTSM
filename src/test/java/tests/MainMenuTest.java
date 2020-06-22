@@ -5,24 +5,12 @@ import tests.base.BaseTest;
 
 public class MainMenuTest extends BaseTest {
 
-    @Test
-    public void verifyUserCanCreateWorkspace(){
-        mainMenuModal
-                .openPage()
-                .createNewWorkspace();
-        addAccountModal
-                .enterEmail("fromAuto@test.com")
-                .clickOnContinueButton();
-        verifyAccountModal
-                .setVerificationCodeFromEmail("fromauto@test.com")
-                .clickOnContinueButton();
-        introduceModal
-                .inputFirstName("tttt")
-                .inputLastName("ttttt")
-                .clickOnContinueButton();
-        createWorkspaceModal
-                .enterWorkspaceName("tereee");
-        createWorkspaceModal.clickOnContinueButton();
-
+    @Test(description = "Verifying user can create a new workspace")
+    public void verifyUserCanCreateWorkspace() {
+        mainMenuSteps.createNewWorkspace(
+                "wonder@day.com",
+                "TMS-Name",
+                "TMS-Surname",
+                "TMS-Workspace");
     }
 }
