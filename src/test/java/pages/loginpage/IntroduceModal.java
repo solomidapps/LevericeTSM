@@ -27,7 +27,6 @@ public class IntroduceModal extends BaseMenuModal {
 
         } catch (NoSuchElementException e) {
             log.error("Intro modal is not opened");
-            AllureUtils.takeScreenshot();
         }
         return this;
     }
