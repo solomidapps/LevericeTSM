@@ -31,6 +31,7 @@ public class MailHogUtil {
 
     public static void isTabOpened() {
         $(TOOLBAR_CSS).waitUntil(Condition.visible, 3000);
+        AllureUtils.takeScreenshot();
     }
 
     public static void closeTab() {
@@ -68,6 +69,7 @@ public class MailHogUtil {
 
     public static String getValidationCode() {
         switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID)));
+        AllureUtils.takeScreenshot();
         return $(VALIDATION_CODE_CSS).getText().trim();
     }
 
