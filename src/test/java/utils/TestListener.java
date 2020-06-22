@@ -1,17 +1,12 @@
 package utils;
 
-import io.qameta.allure.Attachment;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.NoSuchSessionException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
 @Log4j2

@@ -4,7 +4,7 @@
 # https://circleci.com/docs/2.0/browser-testing/#selenium
 version: 2
 jobs:
-  ui-tests:
+  tsm-leverice-tests:
     docker:
       - image: circleci/openjdk:8u181-jdk-browsers
     working_directory: ~/repo
@@ -42,14 +42,14 @@ workflows:
   version: 2
   commit:
     jobs:
-      - ui-tests
+      - tsm-leverice-tests
   periodical:
     triggers:
       - schedule:
-          cron: "1 4,8,12 * * *"
+          cron: "0 0 * * *"
           filters:
             branches:
               only:
                 - master
     jobs:
-      - ui-tests
+      - tsm-leverice-tests
