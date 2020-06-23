@@ -84,6 +84,7 @@ public class MailHogUtil {
 
     public static String getValidationCodeByEmail(String emailName) {
         openTab();
+        updateEmails();
         getAllEmails();
         openEmailByNameAndASubject(emailName, "Leverice email validation");
         String validationCode = getValidationCode();
@@ -98,6 +99,7 @@ public class MailHogUtil {
 
     public static String getInvitationTokenByEmail(String emailName) {
         openTab();
+        updateEmails();
         getAllEmails();
         openEmailByNameAndASubject(emailName, "Invitation to Leverice");
         String token = getToken();

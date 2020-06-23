@@ -62,7 +62,4 @@ public class InviteUserModal extends BasePage {
         menuStructurePage.isPageOpened();
         return menuStructurePage;
     }
-
-    //TODO Сделать метод для Sign In так как после создания воркспейса тест должен иметь возможность начаться независимо
-    // при закрытии браузера нужно перелогиниваться
 }
