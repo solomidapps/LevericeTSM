@@ -33,8 +33,9 @@ This is just a Hackathon project ! Nothing special over here.
 $ mvn clean install
 $ mvn allure:report
 ```
-![Recordit GIF](https://recordit.co/vDo0ra6UNf)
+![Recordit GIF](http://g.recordit.co/mHQjbKFsB4.gif)
 
+![Recordit GIF](http://g.recordit.co/vDo0ra6UNf.gif)
 ---
 
 ## Features
