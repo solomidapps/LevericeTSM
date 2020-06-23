@@ -27,7 +27,7 @@ public class BaseTest {
 
     private static final String randomNumber = String.valueOf(Math.random() * ((999 - 1) + 1)) + 1;
     private static final String preCreatedEmail = "wonder-pre" + randomNumber + "@day.com";
-    private static final String preCreatedWorkspaceName = "TMS-Pre-Workspace2";
+    private static final String preCreatedWorkspaceName = "TMS-Pre-Workspace";
 
     public static String getPreCreatedEmail() {
         return preCreatedEmail;
