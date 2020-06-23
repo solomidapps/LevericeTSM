@@ -51,7 +51,9 @@ public class InviteUserSteps {
         menuStructurePage.isPageOpened();
         MailHogUtil.clickOnJoinWorkspaceInEmail(emailToInvite);
         Selenide.executeJavaScript("window.resizeTo(1024, 768);");
+        //TODO сделать проверку что пользователь после инвайта видит главный экран
       //  menuStructurePage.isPageOpened();
+        //TODO сделать проверку что новый пользователь видит
       /*  introduceModal
                 .inputFirstName("tsm-test-f")
                 .inputLastName("tsm-test-l")

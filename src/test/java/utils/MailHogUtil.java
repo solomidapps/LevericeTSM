@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import components.EmailComponent;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -107,11 +108,14 @@ public class MailHogUtil {
         return token;
     }
 
+    @Step("Clicking on JOIN")
     public static void clickOnJoinWorkspaceInEmail(String emailName){
         openTab();
         updateEmails();
         getAllEmails();
         openEmailByNameAndASubject(emailName, "Invitation to Leverice");
+        sleep(4000);
+        AllureUtils.takeScreenshot();
         switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID))).findElement((By.xpath(JOIN_WITH_TOKEN_XPATH))).click();
     }
 }
