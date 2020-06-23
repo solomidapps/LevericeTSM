@@ -20,7 +20,7 @@ public class MailHogUtil {
     private static final String TOOLBAR_CSS = ".toolbar";
     private static final String VALIDATION_CODE_IFRAME_ID = "preview-html";
     private static final String VALIDATION_CODE_CSS = ".validation-code";
-    private static final String JOIN_WITH_TOKEN_XPATH = "//a[@data-url='invite']";
+    private static final String JOIN_WITH_TOKEN_XPATH = "//a[contains(text(),'Join')]";
     private static final String TOKEN_XPATH = "//table/tbody/tr[5]/td[1]";
     private static final String INBOX_BUTTON_XPATH = "//a[@class='ng-binding' and contains(text(), 'Inbox')]";
     private static Map<Integer, EmailComponent> emailComponentMap = new LinkedHashMap<>();
