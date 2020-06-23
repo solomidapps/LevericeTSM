@@ -34,6 +34,7 @@ $ mvn allure:report
 ![Recordit GIF](http://g.recordit.co/mHQjbKFsB4.gif)
 
 ![Recordit GIF](http://g.recordit.co/vDo0ra6UNf.gif)
+
 ---
 
 ## Features
