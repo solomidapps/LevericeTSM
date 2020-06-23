@@ -15,8 +15,6 @@ This is just a Hackathon project ! Nothing special over here.
 
 ## Installation
 
----
-
 ### Clone
 
 > Clone this repo to your local machine using 
