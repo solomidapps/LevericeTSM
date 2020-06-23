@@ -1,10 +1,11 @@
 package tests.base;
 
 import com.codeborne.selenide.Configuration;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import pages.loginpage.*;
+import org.testng.annotations.*;
+import pages.addFolderPage.MenuStructurePage;
+import pages.inviteUsersPage.InviteUserModal;
+import pages.mainMenuPage.*;
+import steps.InviteUserSteps;
 import steps.MainMenuSteps;
 import utils.TestListener;
 
@@ -20,6 +21,32 @@ public class BaseTest {
     protected IntroduceModal introduceModal;
     protected CreateWorkspaceModal createWorkspaceModal;
     protected MainMenuSteps mainMenuSteps;
+    protected InviteUserModal inviteUserModal;
+    protected MenuStructurePage menuStructurePage;
+    protected InviteUserSteps inviteUserSteps;
+
+    private static final String randomNumber = String.valueOf(Math.random() * ((999 - 1) + 1)) + 1;
+    private static final String preCreatedEmail = "wonder-pre" + randomNumber + "@day.com";
+    private static final String preCreatedWorkspaceName = "TMS-Pre-Workspace";
+
+    public static String getPreCreatedEmail() {
+        return preCreatedEmail;
+    }
+
+    public static String getPreCreatedWorkspaceName() {
+        return preCreatedWorkspaceName;
+    }
+
+    @BeforeSuite
+    public void setupEnvironment() {
+        MainMenuSteps mainMenuSteps = new MainMenuSteps();
+        mainMenuSteps.createNewWorkspace(
+                preCreatedEmail,
+                "TMS-Pre-Name",
+                "TMS-Pre-Surname",
+                preCreatedWorkspaceName);
+        getWebDriver().quit();
+    }
 
     @BeforeMethod
     public void setupBrowser() {
@@ -35,11 +62,17 @@ public class BaseTest {
         introduceModal = new IntroduceModal();
         createWorkspaceModal = new CreateWorkspaceModal();
         mainMenuSteps = new MainMenuSteps();
+        introduceModal = new IntroduceModal();
+        menuStructurePage = new MenuStructurePage();
+        inviteUserModal = new InviteUserModal();
+        inviteUserSteps = new InviteUserSteps();
     }
 
     @AfterMethod(alwaysRun = true)
     public void closeBrowser() {
         getWebDriver().quit();
     }
+
+
 }
 

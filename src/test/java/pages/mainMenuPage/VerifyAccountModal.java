@@ -1,4 +1,4 @@
-package pages.loginpage;
+package pages.mainMenuPage;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -73,5 +73,13 @@ public class VerifyAccountModal extends BaseMenuModal {
         IntroduceModal introduceModal = new IntroduceModal();
         introduceModal.isModalOpened();
         return introduceModal;
+    }
+
+    @Step("Setting verification code from email '{emailName}' and proceeding to openworspace modal")
+    public OpenWorkspaceModal setCodeFromEmailAndProceedToOpenWorkspace(String emailName) {
+        getVerificationFields().enterCodeInFirstField(MailHogUtil.getValidationCodeByEmail(emailName));
+        OpenWorkspaceModal openWorkspaceModal = new OpenWorkspaceModal();
+        openWorkspaceModal.isModalOpened();
+        return openWorkspaceModal;
     }
 }

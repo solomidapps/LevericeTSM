@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import components.EmailComponent;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -20,6 +21,9 @@ public class MailHogUtil {
     private static final String TOOLBAR_CSS = ".toolbar";
     private static final String VALIDATION_CODE_IFRAME_ID = "preview-html";
     private static final String VALIDATION_CODE_CSS = ".validation-code";
+    private static final String JOIN_WITH_TOKEN_XPATH = "//a[contains(text(),'Join')]";
+    private static final String TOKEN_XPATH = "//table/tbody/tr[5]/td[1]";
+    private static final String INBOX_BUTTON_XPATH = "//a[@class='ng-binding' and contains(text(), 'Inbox')]";
     private static Map<Integer, EmailComponent> emailComponentMap = new LinkedHashMap<>();
 
     public static void openTab() {
@@ -73,12 +77,45 @@ public class MailHogUtil {
         return $(VALIDATION_CODE_CSS).getText().trim();
     }
 
+    public static String getToken() {
+        switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID)));
+        AllureUtils.takeScreenshot();
+        return $(By.xpath(TOKEN_XPATH)).getText().trim();
+    }
+
     public static String getValidationCodeByEmail(String emailName) {
         openTab();
+        updateEmails();
         getAllEmails();
         openEmailByNameAndASubject(emailName, "Leverice email validation");
         String validationCode = getValidationCode();
         closeTab();
         return validationCode;
+    }
+
+    public static void updateEmails() {
+        $(By.xpath(INBOX_BUTTON_XPATH)).click();
+        isTabOpened();
+    }
+
+    public static String getInvitationTokenByEmail(String emailName) {
+        openTab();
+        updateEmails();
+        getAllEmails();
+        openEmailByNameAndASubject(emailName, "Invitation to Leverice");
+        String token = getToken();
+        closeTab();
+        return token;
+    }
+
+    @Step("Clicking on JOIN")
+    public static void clickOnJoinWorkspaceInEmail(String emailName){
+        openTab();
+        updateEmails();
+        getAllEmails();
+        openEmailByNameAndASubject(emailName, "Invitation to Leverice");
+        sleep(4000);
+        AllureUtils.takeScreenshot();
+        switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID))).findElement((By.xpath(JOIN_WITH_TOKEN_XPATH))).click();
     }
 }

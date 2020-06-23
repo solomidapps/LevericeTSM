@@ -1,7 +1,7 @@
 package steps;
 
 import io.qameta.allure.Step;
-import pages.loginpage.*;
+import pages.mainMenuPage.*;
 
 public class MainMenuSteps {
     private MainMenuModal mainMenuModal;
@@ -27,7 +27,7 @@ public class MainMenuSteps {
                 .clickOnCreateNewWorkspace();
         addAccountModal
                 .enterEmail(emailName)
-                .clickOnContinueButton();
+                .proceedToToVerifyAccount();
         verifyAccountModal
                 .setVerificationCodeFromEmail(emailName);
         introduceModal
