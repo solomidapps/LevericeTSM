@@ -1,11 +1,17 @@
 package steps;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import pages.addFolderPage.MenuStructurePage;
 import pages.inviteUsersPage.InviteUserModal;
 import pages.mainMenuPage.*;
 import tests.base.BaseTest;
 import utils.MailHogUtil;
+
+import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class InviteUserSteps {
     private MenuStructurePage menuStructurePage;
@@ -36,10 +42,6 @@ public class InviteUserSteps {
                 .proceedToToVerifyAccount();
         verifyAccountModal
                 .setCodeFromEmailAndProceedToOpenWorkspace(BaseTest.getPreCreatedEmail());
-        /*introduceModal
-                .inputFirstName("tsm-test-f")
-                .inputLastName("tsm-test-l")
-                .proceedToSelectWorkspace();*/
         openWorkspaceModal
                 .getWorkspaces().clickOnFirstWorkspace();
         menuStructurePage.clickInviteUserButton();
@@ -47,8 +49,14 @@ public class InviteUserSteps {
                 .inputUser(emailToInvite)
                 .getListOfUsers().verifyUserIsInTheList(emailToInvite)
                 .clickOnInviteeButton();
-        MailHogUtil.clickOnJoinWorkspaceInEmail(emailToInvite);
         menuStructurePage.isPageOpened();
+        getWebDriver().quit();
+        MailHogUtil.clickOnJoinWorkspaceInEmail(emailToInvite);
+      //  menuStructurePage.isPageOpened();
+      /*  introduceModal
+                .inputFirstName("tsm-test-f")
+                .inputLastName("tsm-test-l")
+                .proceedToMenuStructurePage();*/
         return this;
     }
 }

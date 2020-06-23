@@ -3,6 +3,7 @@ package pages.mainMenuPage;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import pages.addFolderPage.MenuStructurePage;
 import pages.base.BaseMenuModal;
 import utils.AllureUtils;
 
@@ -24,6 +25,7 @@ public class IntroduceModal extends BaseMenuModal {
     public BaseMenuModal isModalOpened() {
         log.info("Checking Intro modal opened");
         try {
+
             $(INTRO_HEADING_CSS).waitUntil(Condition.visible, 3000);
 
         } catch (NoSuchElementException e) {
@@ -61,5 +63,13 @@ public class IntroduceModal extends BaseMenuModal {
         OpenWorkspaceModal openWorkspaceModal = new OpenWorkspaceModal();
         openWorkspaceModal.isModalOpened();
         return openWorkspaceModal;
+    }
+    @Step("Clicking on continue button")
+    public MenuStructurePage proceedToMenuStructurePage() {
+        log.debug("Clicking on continue button");
+        $(CONTINUE_BUTTON_CSS).click();
+        MenuStructurePage menuStructurePage = new MenuStructurePage();
+        menuStructurePage.isPageOpened();
+        return menuStructurePage;
     }
 }

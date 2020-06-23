@@ -72,5 +72,7 @@ public class BaseTest {
     public void closeBrowser() {
         getWebDriver().quit();
     }
+
+
 }
 

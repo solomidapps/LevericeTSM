@@ -108,12 +108,11 @@ public class MailHogUtil {
     }
 
     public static void clickOnJoinWorkspaceInEmail(String emailName){
+        open();
         openTab();
         updateEmails();
         getAllEmails();
         openEmailByNameAndASubject(emailName, "Invitation to Leverice");
         switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID))).findElement((By.xpath(JOIN_WITH_TOKEN_XPATH))).click();
-        $(By.xpath(JOIN_WITH_TOKEN_XPATH)).click();
-        closeTab();
     }
 }
