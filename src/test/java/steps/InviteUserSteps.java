@@ -49,7 +49,6 @@ public class InviteUserSteps {
                 .clickOnInviteeButton();
         sleep(4000);
         menuStructurePage.isPageOpened();
-        getWebDriver().quit();
         MailHogUtil.clickOnJoinWorkspaceInEmail(emailToInvite);
         Selenide.executeJavaScript("window.resizeTo(1024, 768);");
       //  menuStructurePage.isPageOpened();

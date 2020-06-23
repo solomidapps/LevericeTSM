@@ -108,7 +108,6 @@ public class MailHogUtil {
     }
 
     public static void clickOnJoinWorkspaceInEmail(String emailName){
-        open();
         openTab();
         updateEmails();
         getAllEmails();
