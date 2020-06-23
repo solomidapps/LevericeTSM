@@ -1,6 +1,5 @@
 package steps;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import pages.addFolderPage.MenuStructurePage;
@@ -9,8 +8,6 @@ import pages.mainMenuPage.*;
 import tests.base.BaseTest;
 import utils.MailHogUtil;
 
-import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.Selenide.switchTo;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class InviteUserSteps {
@@ -52,6 +49,7 @@ public class InviteUserSteps {
         menuStructurePage.isPageOpened();
         getWebDriver().quit();
         MailHogUtil.clickOnJoinWorkspaceInEmail(emailToInvite);
+        Selenide.executeJavaScript("window.resizeTo(1024, 768);");
       //  menuStructurePage.isPageOpened();
       /*  introduceModal
                 .inputFirstName("tsm-test-f")

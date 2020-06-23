@@ -7,6 +7,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import pages.base.BasePage;
 import pages.inviteUsersPage.InviteUserModal;
+import utils.AllureUtils;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
@@ -20,7 +21,8 @@ public class MenuStructurePage extends BasePage {
     public BasePage isPageOpened() {
         log.debug("Check the 'MenuStructurePage' is displayed.");
         try {
-            $(By.xpath(String.format(OPEN_MODAL_XPATH, "Create new Folder"))).shouldBe(Condition.visible);
+            $(By.xpath(String.format(OPEN_MODAL_XPATH, "Create new Folder"))).waitUntil(Condition.visible, 3000);
+            AllureUtils.takeScreenshot();
         } catch (NoSuchElementException e) {
             log.error("'MenuStructurePage' is not opened.");
             screenshot("main_menu_structure_is_not_opened");
@@ -31,6 +33,7 @@ public class MenuStructurePage extends BasePage {
 
     public InviteUserModal clickInviteUserButton() {
         $(By.xpath(String.format(OPEN_MODAL_XPATH, "Invite User"))).click();
+        AllureUtils.takeScreenshot();
         InviteUserModal inviteUserModal = new InviteUserModal();
         inviteUserModal.isPageOpened();
         return inviteUserModal;

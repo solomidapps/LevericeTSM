@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import pages.addFolderPage.MenuStructurePage;
 import pages.base.BasePage;
+import utils.AllureUtils;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class InviteUserModal extends BasePage {
         log.debug("Check the 'Invite user' modal is displayed.");
         try {
             $(LOGO_CSS).shouldBe(Condition.visible);
+            AllureUtils.takeScreenshot();
         } catch (NoSuchElementException e) {
             log.error("'Invite user' modal is not opened.");
             screenshot("invite_user_modal_not_opened");

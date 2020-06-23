@@ -2,6 +2,7 @@ package pages.mainMenuPage;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -43,6 +44,7 @@ public class OpenWorkspaceModal extends BaseMenuModal {
     @Step("Clicking on the first workspace in the list")
     public MenuStructurePage clickOnFirstWorkspace() {
         workspacesList.get(0).click();
+        AllureUtils.takeScreenshot();
         MenuStructurePage menuStructurePage = new MenuStructurePage();
         menuStructurePage.isPageOpened();
         return menuStructurePage;
