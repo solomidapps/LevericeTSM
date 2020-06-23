@@ -26,15 +26,25 @@ public class BaseTest {
     protected InviteUserSteps inviteUserSteps;
 
     private static final String randomNumber = String.valueOf(Math.random() * ((999 - 1) + 1)) + 1;
+    private static final String preCreatedEmail = "wonder-pre" + randomNumber + "@day.com";
+    private static final String preCreatedWorkspaceName = "TMS-Pre-Workspace";
+
+    public static String getPreCreatedEmail() {
+        return preCreatedEmail;
+    }
+
+    public static String getPreCreatedWorkspaceName() {
+        return preCreatedWorkspaceName;
+    }
 
     @BeforeSuite
     public void setupEnvironment() {
         MainMenuSteps mainMenuSteps = new MainMenuSteps();
         mainMenuSteps.createNewWorkspace(
-                "wonder-pre" + randomNumber + "@day.com",
+                preCreatedEmail,
                 "TMS-Pre-Name",
                 "TMS-Pre-Surname",
-                "TMS-Pre-Workspace");
+                preCreatedWorkspaceName);
         getWebDriver().quit();
     }
 

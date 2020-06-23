@@ -22,6 +22,7 @@ public class MailHogUtil {
     private static final String VALIDATION_CODE_CSS = ".validation-code";
     private static final String JOIN_WITH_TOKEN_XPATH = "//a[@data-url='invite']";
     private static final String TOKEN_XPATH = "//table/tbody/tr[5]/td[1]";
+    private static final String INBOX_BUTTON_XPATH = "//a[@class='ng-binding' and contains(text(), 'Inbox')]";
     private static Map<Integer, EmailComponent> emailComponentMap = new LinkedHashMap<>();
 
     public static void openTab() {
@@ -90,6 +91,11 @@ public class MailHogUtil {
         return validationCode;
     }
 
+    public static void updateEmails() {
+        $(By.xpath(INBOX_BUTTON_XPATH)).click();
+        isTabOpened();
+    }
+
     public static String getInvitationTokenByEmail(String emailName) {
         openTab();
         getAllEmails();
@@ -97,5 +103,15 @@ public class MailHogUtil {
         String token = getToken();
         closeTab();
         return token;
+    }
+
+    public static void clickOnJoinWorkspaceInEmail(String emailName){
+        openTab();
+        updateEmails();
+        getAllEmails();
+        openEmailByNameAndASubject(emailName, "Invitation to Leverice");
+        switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID))).findElement((By.xpath(JOIN_WITH_TOKEN_XPATH))).click();
+        $(By.xpath(JOIN_WITH_TOKEN_XPATH)).click();
+        closeTab();
     }
 }

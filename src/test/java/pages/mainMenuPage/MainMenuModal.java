@@ -57,7 +57,7 @@ public class MainMenuModal extends BaseMenuModal {
     }
 
     @Step("Click on sign in button")
-    public AddAccountModal signIn() {
+    public AddAccountModal clickOnSignIn() {
         log.info("Opening sign in modal");
         validateButtonDescription("Sign in", signInDesc);
         clickMenuButtonByText("Sign in");

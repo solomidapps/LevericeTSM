@@ -22,7 +22,7 @@ public class InviteUserModal extends BasePage {
     private static final String LIST_OF_USERS_CSS = ".email-block__email";
     private static final String INPUT_EMAIL_FIELD = "//textarea[@placeholder='Enter email addresses (or paste multiple)']";
     private static final String CONTINUE_BUTTON_CSS = ".button-accept";
-    List<SelenideElement> emailList;
+    private List<SelenideElement> emailList;
 
     @Step("Verifying is invite modal opened ")
     @Override

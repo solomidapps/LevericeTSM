@@ -60,7 +60,7 @@ public class AddAccountModal extends BaseMenuModal {
     }
 
     @Step("Clicking on continue button")
-    public VerifyAccountModal clickOnContinueButton() {
+    public VerifyAccountModal proceedToToVerifyAccount() {
         log.debug("Clicking on continue button");
         assertTrue(isContinueButtonEnabled());
         $(CONTINUE_BUTTON_CSS).click();

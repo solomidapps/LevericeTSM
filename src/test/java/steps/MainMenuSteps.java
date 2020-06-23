@@ -27,7 +27,7 @@ public class MainMenuSteps {
                 .clickOnCreateNewWorkspace();
         addAccountModal
                 .enterEmail(emailName)
-                .clickOnContinueButton();
+                .proceedToToVerifyAccount();
         verifyAccountModal
                 .setVerificationCodeFromEmail(emailName);
         introduceModal

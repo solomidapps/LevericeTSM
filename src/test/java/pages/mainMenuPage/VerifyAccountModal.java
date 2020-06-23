@@ -74,4 +74,12 @@ public class VerifyAccountModal extends BaseMenuModal {
         introduceModal.isModalOpened();
         return introduceModal;
     }
+
+    @Step("Setting verification code from email '{emailName}' and proceeding to openworspace modal")
+    public OpenWorkspaceModal setCodeFromEmailAndProceedToOpenWorkspace(String emailName) {
+        getVerificationFields().enterCodeInFirstField(MailHogUtil.getValidationCodeByEmail(emailName));
+        OpenWorkspaceModal openWorkspaceModal = new OpenWorkspaceModal();
+        openWorkspaceModal.isModalOpened();
+        return openWorkspaceModal;
+    }
 }
