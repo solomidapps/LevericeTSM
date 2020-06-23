@@ -43,6 +43,7 @@ public class InviteUserModal extends BasePage {
     @Step("Inputing user to invite")
     public InviteUserModal inputUser(String emailInput) {
         writeTextXpath(INPUT_EMAIL_FIELD, emailInput);
+        AllureUtils.takeScreenshot();
         return this;
     }
 

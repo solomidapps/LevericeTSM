@@ -8,6 +8,7 @@ import pages.mainMenuPage.*;
 import tests.base.BaseTest;
 import utils.MailHogUtil;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class InviteUserSteps {
@@ -46,6 +47,7 @@ public class InviteUserSteps {
                 .inputUser(emailToInvite)
                 .getListOfUsers().verifyUserIsInTheList(emailToInvite)
                 .clickOnInviteeButton();
+        sleep(4000);
         menuStructurePage.isPageOpened();
         getWebDriver().quit();
         MailHogUtil.clickOnJoinWorkspaceInEmail(emailToInvite);
