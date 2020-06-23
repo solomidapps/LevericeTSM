@@ -38,16 +38,19 @@ public class InviteUserModal extends BasePage {
         return this;
     }
 
+    @Step("Inputing user to invite")
     public InviteUserModal inputUser(String emailInput) {
         writeTextXpath(INPUT_EMAIL_FIELD, emailInput);
         return this;
     }
 
+    @Step("Getting list of users")
     public InviteUserModal getListOfUsers() {
         emailList = $$(LIST_OF_USERS_CSS);
         return this;
     }
 
+    @Step("Verifying user is in a list")
     public InviteUserModal verifyUserIsInTheList(String expectedEmail) {
         String actualEmail = emailList.get(0).getText();
         assertEquals("Email is not in the list", actualEmail, expectedEmail);
