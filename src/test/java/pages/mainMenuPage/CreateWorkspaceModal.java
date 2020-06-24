@@ -36,7 +36,6 @@ public class CreateWorkspaceModal extends BaseMenuModal {
     @Step("Entering workspace name '{workspaceName}'")
     public CreateWorkspaceModal enterWorkspaceName(String workspaceName) {
         log.info("Enetring workspace name " + workspaceName);
-        sleep(2000);
         writeTextCss(INPUT_WORKSPACE_NAME_CSS, workspaceName);
         return this;
     }

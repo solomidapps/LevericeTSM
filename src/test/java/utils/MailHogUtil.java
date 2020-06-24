@@ -114,7 +114,6 @@ public class MailHogUtil {
         updateEmails();
         getAllEmails();
         openEmailByNameAndASubject(emailName, "Invitation to Leverice");
-        sleep(4000);
         AllureUtils.takeScreenshot();
         switchTo().frame($(By.id(VALIDATION_CODE_IFRAME_ID))).findElement((By.xpath(JOIN_WITH_TOKEN_XPATH))).click();
     }

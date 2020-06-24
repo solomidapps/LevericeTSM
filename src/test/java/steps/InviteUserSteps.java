@@ -47,7 +47,7 @@ public class InviteUserSteps {
                 .inputUser(emailToInvite)
                 .getListOfUsers().verifyUserIsInTheList(emailToInvite)
                 .clickOnInviteeButton();
-        sleep(4000);
+        sleep(2000);
         menuStructurePage.isPageOpened();
         MailHogUtil.clickOnJoinWorkspaceInEmail(emailToInvite);
         Selenide.executeJavaScript("window.resizeTo(1024, 768);");
