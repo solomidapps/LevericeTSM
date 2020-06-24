@@ -1,6 +1,7 @@
 package pages.addFolderPage;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,6 +18,7 @@ public class MenuStructurePage extends BasePage {
 
     private static final String OPEN_MODAL_XPATH = "//div[@class='command-link' and div[contains(text(),'%s')]]";
 
+    @Step("Verifying is MenuStructurePage is opened")
     @Override
     public BasePage isPageOpened() {
         log.debug("Check the 'MenuStructurePage' is displayed.");
@@ -31,6 +33,7 @@ public class MenuStructurePage extends BasePage {
         return this;
     }
 
+    @Step("Clicking on invite user button")
     public InviteUserModal clickInviteUserButton() {
         $(By.xpath(String.format(OPEN_MODAL_XPATH, "Invite User"))).click();
         AllureUtils.takeScreenshot();
