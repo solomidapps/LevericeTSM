@@ -67,7 +67,7 @@ public class MainMenuModal extends BaseMenuModal {
     }
 
     @Step("Click on sign in with token button")
-    public JoinByTokenModal signInWithToken() {
+    public JoinByTokenModal clickSignInWithToken() {
         log.info("Opening sign in with token modal");
         validateButtonDescription("Sign up with token", singInWithTokenDesc);
         clickMenuButtonByText("Sign up with token");
