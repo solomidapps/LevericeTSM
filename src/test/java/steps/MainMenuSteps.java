@@ -1,7 +1,11 @@
 package steps;
 
 import io.qameta.allure.Step;
+import pages.addFolderPage.MenuStructurePage;
 import pages.mainMenuPage.*;
+
+import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class MainMenuSteps {
     private MainMenuModal mainMenuModal;
@@ -10,6 +14,9 @@ public class MainMenuSteps {
     private VerifyAccountModal verifyAccountModal;
     private IntroduceModal introduceModal;
     private CreateWorkspaceModal createWorkspaceModal;
+    private OpenWorkspaceModal openWorkspaceModal;
+    private MenuStructurePage menuStructurePage;
+    private InviteUserSteps inviteUserSteps;
 
     public MainMenuSteps() {
         mainMenuModal = new MainMenuModal();
@@ -18,6 +25,9 @@ public class MainMenuSteps {
         verifyAccountModal = new VerifyAccountModal();
         introduceModal = new IntroduceModal();
         createWorkspaceModal = new CreateWorkspaceModal();
+        openWorkspaceModal = new OpenWorkspaceModal();
+        menuStructurePage = new MenuStructurePage();
+        inviteUserSteps = new InviteUserSteps();
     }
 
     @Step("Creating new workspace for email '{emailName}' and name '{workspaceName}'")
@@ -38,5 +48,35 @@ public class MainMenuSteps {
                 .enterWorkspaceName(workspaceName)
                 .clickOnContinueButton();
         return this;
+    }
+
+    @Step("Verifying user can Sign in")
+    public MainMenuSteps verifyUserCanSignIn(String email) {
+        mainMenuModal
+                .openPage()
+                .clickOnSignIn();
+        addAccountModal
+                .enterEmail(email)
+                .proceedToToVerifyAccount();
+        verifyAccountModal
+                .setCodeFromEmailAndProceedToOpenWorkspace(email);
+        openWorkspaceModal
+                .getWorkspaces().clickOnFirstWorkspace();
+        sleep(2000);
+        menuStructurePage.isPageOpened();
+        return this;
+    }
+
+    @Step("Verifying user can sign in with token")
+    public void verifyUserCanSignInWithToken(String email) {
+        inviteUserSteps.verifyNewUserCanBeInvited(email);
+        getWebDriver().quit();
+        mainMenuModal
+                .openPage()
+                .clickSignInWithToken();
+        joinByTokenModal
+                .inputTokenFromEmail(email)
+                .clickOnJoinButton();
+
     }
 }
