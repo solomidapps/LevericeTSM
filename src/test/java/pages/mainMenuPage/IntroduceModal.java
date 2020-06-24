@@ -10,7 +10,6 @@ import utils.AllureUtils;
 import java.util.NoSuchElementException;
 
 import static com.codeborne.selenide.Selenide.$;
-import static org.testng.Assert.assertTrue;
 
 @Log4j2
 public class IntroduceModal extends BaseMenuModal {

@@ -7,31 +7,32 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import pages.base.BasePage;
-import pages.createDirectChannelPage.CreateDirectChannel;
+import pages.createDirectChannelPage.CreateDirectChannelPage;
 
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
 import static components.elements.Input.writeTextXpath;
 
 @Log4j2
-public class CreateTopicChannel{// extends BasePage {
+public class CreateTopicChannelPage extends BasePage {// extends BasePage {
 
     private static final String BUTTON_AddNewTopic_XPATH = "//div[contains(text(),'Add new Topic')]";
     private static final String AddChannelName_FIELD_XPATH = "//textarea[@placeholder='Add a channel name']";
     private static final String SEARCH_POSITION_FIELD_XPATH = "//div[text()='Creating Topic Channel']";
-    private CreateDirectChannel channel = new CreateDirectChannel();
+    private CreateDirectChannelPage channel = new CreateDirectChannelPage();
     private String userName = "TMS-Pre-Name TMS-Pre-Surname";
 
-    public void isPageOpened() {
+    @Step("Verifying is CreateTopicChannelPage opened")
+    public CreateTopicChannelPage isPageOpened() {
         log.debug("Check the 'Creating Folder' pop up is displayed.");
         try {
-            $(By.xpath(SEARCH_POSITION_FIELD_XPATH)).shouldBe(Condition.visible);
+            $(By.xpath(SEARCH_POSITION_FIELD_XPATH)).waitUntil(Condition.visible, 3000);
         } catch (NoSuchElementException e) {
             log.error("'Creating Folder' pop up is not opened. Cannot find element Search Position Field");
             screenshot("create_folder_not_opened");
             Assert.fail("Impossible to create a folder: pop-up is not opened");
         }
+        return this;
     }
 
     public void isWorkSpacePageOpened() {

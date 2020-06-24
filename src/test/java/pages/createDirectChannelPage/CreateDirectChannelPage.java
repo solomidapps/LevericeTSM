@@ -13,17 +13,18 @@ import static com.codeborne.selenide.Selenide.screenshot;
 import static components.elements.Input.writeTextXpath;
 
 @Log4j2
-public class CreateDirectChannel extends BasePage {
+public class CreateDirectChannelPage extends BasePage {
 
     private static final String BUTTON_CreateNewDirectChannel_XPATH = "//div[contains(text(),'Create new Direct Channel')]";
     private static final String SEARCH_POSITION_FIELD_XPATH = "//div[text()='Creating Direct Channel'";
     private static final String REQUIRED_FIELD_XPATH = "//textarea[@placeholder='Required']";
     private static final String BUTTON_CREATE_XPATH = "//label[text()='Create']";
 
-    public CreateDirectChannel isPageOpened() {
+    @Step("Verifying is page opened")
+    public CreateDirectChannelPage isPageOpened() {
         log.debug("Check the 'Creating Folder' pop up is displayed.");
         try {
-            $(By.xpath(SEARCH_POSITION_FIELD_XPATH)).shouldBe(Condition.visible);
+            $(By.xpath(SEARCH_POSITION_FIELD_XPATH)).waitUntil(Condition.visible, 3000);
         } catch (NoSuchElementException e) {
             log.error("'Creating Folder' pop up is not opened. Cannot find element Search Position Field");
             screenshot("create_folder_not_opened");
