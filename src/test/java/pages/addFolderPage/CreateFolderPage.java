@@ -1,6 +1,7 @@
 package pages.addFolderPage;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import models.Folder;
 import org.openqa.selenium.By;
@@ -17,7 +18,7 @@ import static components.elements.Input.writeTextXpath;
 @Log4j2
 public class CreateFolderPage extends BasePage {
     //Controls available within the page
-    private static final String SEARCH_POSITION_FIELD_CSS = ".searchbar";
+    private static final String SEARCH_POSITION_FIELD_CSS = ".smart-bar-text.last-part-input.with-popup-icon";
     private static final String CLEAR_BUTTON_CSS = ".smartbar-clear-input";
     private static final String INVALID_PATH_MESSAGE_XPATH = "//div[@class = 'snackbar']/div";
     private static final String GO_TO_SELECT_CHANNEL_BUTTON_CSS = ".smartbar-popup";
@@ -39,7 +40,7 @@ public class CreateFolderPage extends BasePage {
     private static final String errorLength = "Invalid length of name. It can be up to 50 characters and can't be empty.";
     private static final String errorPath = "Please specify a different path to create the channel.";
 
-
+    @Step("Verifying Creating Folder pop-up is opened ")
     public CreateFolderPage isPageOpened() {
         log.debug("Check the 'Creating Folder' pop up is displayed.");
         try {
@@ -52,6 +53,7 @@ public class CreateFolderPage extends BasePage {
         return this;
     }
 
+    @Step("Verifying Options section in the 'Creating Folder' pop up is opened ")
     public CreateFolderPage isOptionSectionOpened() {
         log.info("Open Options section in the 'Creating Folder' pop up.");
         log.debug("Check the Options section is displayed.");
@@ -65,23 +67,31 @@ public class CreateFolderPage extends BasePage {
         return this;
     }
 
+    @Step("Filling in 'Search Position' field with '{text}'")
     public CreateFolderPage fillInPosition(String text) {
         writeTextCss(SEARCH_POSITION_FIELD_CSS, text);
         return this;
     }
 
+    @Step("Get text from 'Search Position' field")
+    public String getPositionText() {
+        return $(SEARCH_POSITION_FIELD_CSS).getText();
+    }
+
+    @Step("Clearing 'Search Position' field")
     public CreateFolderPage clearPosition() {
         log.debug("Clear 'Position' field via [x] button");
         $(CLEAR_BUTTON_CSS).click();
         return this;
     }
 
-
+    @Step("Filling in 'Folder Name' field with '{text}'")
     public CreateFolderPage fillInFolderName(String text) {
         writeTextXpath(FOLDER_NAME_FIELD_XPATH, text);
         return this;
     }
 
+    @Step("Switch Make Folder Private toggle to '{isPrivate}'")
     public CreateFolderPage switchPrivacy(boolean isPrivate) {
         log.debug("Set 'Make Folder Private' to " + isPrivate);
         boolean currentState = $(PRIVATE_TOGGLE_ON_CSS).isDisplayed();
@@ -91,26 +101,35 @@ public class CreateFolderPage extends BasePage {
         return this;
     }
 
+    @Step("Click 'Options' button to open the section")
     public CreateFolderPage openOptionsSection() {
         $(OPTIONS_BUTTON_CSS).click();
         isOptionSectionOpened();
         return this;
     }
 
+    @Step("Filling in 'Folder Description' field with '{text}'")
     public CreateFolderPage fillInDescription(String text) {
         writeTextXpath(FOLDER_DESCRIPTION_FIELD_XPATH, text);
         return this;
     }
 
+    @Step("Selecting '{option}' option in 'Sort Subchannels' dropdown ")
     public CreateFolderPage selectSubchannelsSorting(String option) {
         log.info("Open 'Sort Subchannels' dropdown");
         $(SORT_SUBCHANNELS_DROPDOWN_CSS).click();
         log.debug("Select " + option + " in 'Sort Subchannels' dropdown");
         String THIS_OPTION_XPATH = String.format(SORT_SUBCHANNELS_DROPDOWN_ITEM_XPATH, option);
-        $(By.xpath(THIS_OPTION_XPATH)).click();
+        try {
+            $(By.xpath(THIS_OPTION_XPATH)).click();
+        } catch (NoSuchElementException e) {
+            log.error("There is no such option in the dropdown");
+            Assert.fail("Impossible to proceed: required option is not present in the dropdown");
+        }
         return this;
     }
 
+    @Step("Click on [Go to Select Channel Location] button")
     public SelectChannelLocationPage goToSelectPositionMenu() {
         log.debug("Open Select Channel Location Page from Creating Folder pop-up");
         $(GO_TO_SELECT_CHANNEL_BUTTON_CSS).click();
@@ -119,6 +138,7 @@ public class CreateFolderPage extends BasePage {
         return selectChannelLocationPage;
     }
 
+    @Step("Click on [Go to Select Members Location] button")
     public ChannelMembersPage goToSelectChannelMembersMenu() {
         log.debug("Open Select Channel Members Page from Creating Folder pop-up");
         $(FOLDER_MEMBERS_CSS).click();
@@ -127,6 +147,7 @@ public class CreateFolderPage extends BasePage {
         return channelMembersPage;
     }
 
+    @Step("Clicking on [Create] button to create a new folder")
     public MenuStructurePage submitFolderCreation() {
         log.debug("Submit folder creation");
         MenuStructurePage menuStructure = new MenuStructurePage();
@@ -141,6 +162,7 @@ public class CreateFolderPage extends BasePage {
         return menuStructure;
     }
 
+    @Step("Clicking on [Cancel] button to cancel creation of a new folder")
     public void cancelFolderCreation() {
         log.debug("Cancel folder creation");
         $(CANCEL_BUTTON_CSS).click();
@@ -153,6 +175,7 @@ public class CreateFolderPage extends BasePage {
         }
     }
 
+    @Step("Clicking on [Cancel] button to cancel creation of a new folder")
     public void closeFolderCreationPopUp() {
         log.debug("Close 'Creating Folder' pop-up'");
         $(CLOSE_BUTTON_CSS).click();
@@ -173,6 +196,7 @@ public class CreateFolderPage extends BasePage {
         return $(By.xpath(NAME_ERROR_MESSAGE_CSS)).getText();
     }
 
+    @Step("Check error '{text}' is displayed")
     public boolean validateErrorMessage(String text) {
         switch (text) {
             case "length":
@@ -186,7 +210,8 @@ public class CreateFolderPage extends BasePage {
         }
     }
 
-    public CreateFolderPage fillInTheForm(Folder folderModel){
+    @Step("Fill in the 'Creating Folder' form with data")
+    public CreateFolderPage fillInTheForm(Folder folderModel) {
         fillInPosition(folderModel.getPosition());
         fillInDescription(folderModel.getDescription());
         fillInFolderName(folderModel.getName());
