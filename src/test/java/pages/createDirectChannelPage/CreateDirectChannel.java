@@ -3,6 +3,7 @@ package pages.createDirectChannelPage;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import pages.base.BasePage;
@@ -22,7 +23,7 @@ public class CreateDirectChannel extends BasePage {
     public CreateDirectChannel isPageOpened() {
         log.debug("Check the 'Creating Folder' pop up is displayed.");
         try {
-            $(SEARCH_POSITION_FIELD_XPATH).shouldBe(Condition.visible);
+            $(By.xpath(SEARCH_POSITION_FIELD_XPATH)).shouldBe(Condition.visible);
         } catch (NoSuchElementException e) {
             log.error("'Creating Folder' pop up is not opened. Cannot find element Search Position Field");
             screenshot("create_folder_not_opened");
@@ -32,19 +33,18 @@ public class CreateDirectChannel extends BasePage {
     }
 
     @Step("Create new Direct Channel")
-    public CreateDirectChannel createDirectChannel (String userName) {
+    public void createDirectChannel (String userName) {
         screenshot("before create Direct Channel");
-        $(BUTTON_CreateNewDirectChannel_XPATH).click();
+        $(By.xpath(BUTTON_CreateNewDirectChannel_XPATH)).click();
         isPageOpened();
         writeTextXpath(REQUIRED_FIELD_XPATH,userName);
-        $(REQUIRED_FIELD_XPATH).pressEnter();
+        $(By.xpath(REQUIRED_FIELD_XPATH)).pressEnter();
         screenshot("after create Direct Channel");
         tapButtonCreate();
-        return this;
     }
 
     public void tapButtonCreate() {
-        $(BUTTON_CREATE_XPATH).click();
+        $(By.xpath(BUTTON_CREATE_XPATH)).click();
     }
 
 }
