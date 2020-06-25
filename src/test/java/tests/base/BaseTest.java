@@ -5,6 +5,7 @@ import org.testng.annotations.*;
 import pages.addFolderPage.MenuStructurePage;
 import pages.inviteUsersPage.InviteUserModal;
 import pages.mainMenuPage.*;
+import steps.CreateChatsSteps;
 import steps.InviteUserSteps;
 import steps.MainMenuSteps;
 import utils.TestListener;
@@ -24,6 +25,7 @@ public class BaseTest {
     protected InviteUserModal inviteUserModal;
     protected MenuStructurePage menuStructurePage;
     protected InviteUserSteps inviteUserSteps;
+    protected CreateChatsSteps createChatsSteps;
 
     private static final String randomNumber = String.valueOf(Math.random() * ((999 - 1) + 1)) + 1;
     private static final String preCreatedEmail = "wonder-pre" + randomNumber + "@day.com";
@@ -66,6 +68,7 @@ public class BaseTest {
         menuStructurePage = new MenuStructurePage();
         inviteUserModal = new InviteUserModal();
         inviteUserSteps = new InviteUserSteps();
+        createChatsSteps = new CreateChatsSteps();
     }
 
     @AfterMethod(alwaysRun = true)

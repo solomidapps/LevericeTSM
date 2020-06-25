@@ -44,6 +44,7 @@ public class MailHogUtil {
     }
 
     public static void getAllEmails() {
+        updateEmails();
         List<SelenideElement> emailList = $$(EMAIL_LIST_CSS);
         List<SelenideElement> emailNamesList = $$(EmailComponent.getEmailToClassname());
         List<SelenideElement> subjectNameList = $$(EmailComponent.getSubjectClassname());
@@ -85,7 +86,6 @@ public class MailHogUtil {
 
     public static String getValidationCodeByEmail(String emailName) {
         openTab();
-        updateEmails();
         getAllEmails();
         openEmailByNameAndASubject(emailName, "Leverice email validation");
         String validationCode = getValidationCode();
@@ -95,7 +95,7 @@ public class MailHogUtil {
 
     public static void updateEmails() {
         $(By.xpath(INBOX_BUTTON_XPATH)).click();
-        isTabOpened();
+        sleep(3000);
     }
 
     public static String getInvitationTokenByEmail(String emailName) {

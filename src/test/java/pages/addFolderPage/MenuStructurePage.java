@@ -23,7 +23,7 @@ public class MenuStructurePage extends BasePage {
     public BasePage isPageOpened() {
         log.debug("Check the 'MenuStructurePage' is displayed.");
         try {
-            $(By.xpath(String.format(OPEN_MODAL_XPATH, "Create new Folder"))).shouldBe(Condition.visible);
+            $(By.xpath(String.format(OPEN_MODAL_XPATH, "Create new Folder"))).waitUntil(Condition.visible, 5000);
             AllureUtils.takeScreenshot();
         } catch (NoSuchElementException e) {
             log.error("'MenuStructurePage' is not opened.");
