@@ -23,7 +23,7 @@
         <lombok.version>1.18.12</lombok.version>
         <testng.version>6.14.3</testng.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <log4j-core.version>2.12.1</log4j-core.version>
+        <log4j-core.version>2.13.2</log4j-core.version>
         <yaml.version>2.10.1</yaml.version>
 
         <!-- Directory Properties -->
